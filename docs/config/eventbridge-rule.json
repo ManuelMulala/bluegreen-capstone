@@ -1,0 +1,8 @@
+{
+    "Name": "bg-green-alarm-rollback",
+    "Arn": "arn:aws:events:eu-west-1:586481704498:rule/bg-green-alarm-rollback",
+    "EventPattern": "{\"source\":[\"aws.cloudwatch\"],\"detail-type\":[\"CloudWatch Alarm State Change\"],\"detail\":{\"alarmName\":[{\"prefix\":\"bg-green-\"}],\"state\":{\"value\":[\"ALARM\"]}}}",
+    "State": "ENABLED",
+    "EventBusName": "default",
+    "CreatedBy": "586481704498"
+}

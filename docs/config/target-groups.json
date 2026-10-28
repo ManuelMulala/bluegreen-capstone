@@ -1,0 +1,52 @@
+{
+    "TargetGroups": [
+        {
+            "TargetGroupArn": "arn:aws:elasticloadbalancing:eu-west-1:586481704498:targetgroup/bg-tg-blue/4ea15ff3985f2122",
+            "TargetGroupName": "bg-tg-blue",
+            "Protocol": "HTTP",
+            "Port": 80,
+            "VpcId": "vpc-04fd98a4bd9ab345c",
+            "HealthCheckProtocol": "HTTP",
+            "HealthCheckPort": "traffic-port",
+            "HealthCheckEnabled": true,
+            "HealthCheckIntervalSeconds": 10,
+            "HealthCheckTimeoutSeconds": 5,
+            "HealthyThresholdCount": 2,
+            "UnhealthyThresholdCount": 2,
+            "HealthCheckPath": "/health",
+            "Matcher": {
+                "HttpCode": "200"
+            },
+            "LoadBalancerArns": [
+                "arn:aws:elasticloadbalancing:eu-west-1:586481704498:loadbalancer/app/bg-alb/1e9a26ec378b4177"
+            ],
+            "TargetType": "instance",
+            "ProtocolVersion": "HTTP1",
+            "IpAddressType": "ipv4"
+        },
+        {
+            "TargetGroupArn": "arn:aws:elasticloadbalancing:eu-west-1:586481704498:targetgroup/bg-tg-green/36e1935507661234",
+            "TargetGroupName": "bg-tg-green",
+            "Protocol": "HTTP",
+            "Port": 80,
+            "VpcId": "vpc-04fd98a4bd9ab345c",
+            "HealthCheckProtocol": "HTTP",
+            "HealthCheckPort": "traffic-port",
+            "HealthCheckEnabled": true,
+            "HealthCheckIntervalSeconds": 10,
+            "HealthCheckTimeoutSeconds": 5,
+            "HealthyThresholdCount": 2,
+            "UnhealthyThresholdCount": 2,
+            "HealthCheckPath": "/health",
+            "Matcher": {
+                "HttpCode": "200"
+            },
+            "LoadBalancerArns": [
+                "arn:aws:elasticloadbalancing:eu-west-1:586481704498:loadbalancer/app/bg-alb/1e9a26ec378b4177"
+            ],
+            "TargetType": "instance",
+            "ProtocolVersion": "HTTP1",
+            "IpAddressType": "ipv4"
+        }
+    ]
+}

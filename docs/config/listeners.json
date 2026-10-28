@@ -1,0 +1,53 @@
+{
+    "Listeners": [
+        {
+            "ListenerArn": "arn:aws:elasticloadbalancing:eu-west-1:586481704498:listener/app/bg-alb/1e9a26ec378b4177/aeb7fde21b07797c",
+            "LoadBalancerArn": "arn:aws:elasticloadbalancing:eu-west-1:586481704498:loadbalancer/app/bg-alb/1e9a26ec378b4177",
+            "Port": 80,
+            "Protocol": "HTTP",
+            "DefaultActions": [
+                {
+                    "Type": "forward",
+                    "ForwardConfig": {
+                        "TargetGroups": [
+                            {
+                                "TargetGroupArn": "arn:aws:elasticloadbalancing:eu-west-1:586481704498:targetgroup/bg-tg-green/36e1935507661234",
+                                "Weight": 0
+                            },
+                            {
+                                "TargetGroupArn": "arn:aws:elasticloadbalancing:eu-west-1:586481704498:targetgroup/bg-tg-blue/4ea15ff3985f2122",
+                                "Weight": 100
+                            }
+                        ],
+                        "TargetGroupStickinessConfig": {
+                            "Enabled": false
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "ListenerArn": "arn:aws:elasticloadbalancing:eu-west-1:586481704498:listener/app/bg-alb/1e9a26ec378b4177/e5ee80f9ab13bfe7",
+            "LoadBalancerArn": "arn:aws:elasticloadbalancing:eu-west-1:586481704498:loadbalancer/app/bg-alb/1e9a26ec378b4177",
+            "Port": 8080,
+            "Protocol": "HTTP",
+            "DefaultActions": [
+                {
+                    "Type": "forward",
+                    "TargetGroupArn": "arn:aws:elasticloadbalancing:eu-west-1:586481704498:targetgroup/bg-tg-green/36e1935507661234",
+                    "ForwardConfig": {
+                        "TargetGroups": [
+                            {
+                                "TargetGroupArn": "arn:aws:elasticloadbalancing:eu-west-1:586481704498:targetgroup/bg-tg-green/36e1935507661234",
+                                "Weight": 1
+                            }
+                        ],
+                        "TargetGroupStickinessConfig": {
+                            "Enabled": false
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}
