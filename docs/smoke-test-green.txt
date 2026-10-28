@@ -1,0 +1,8 @@
+PASS  /health returns 200
+PASS  Green serves v2.0
+PASS  Test listener routes only to Green
+PASS  50/50 requests returned 200
+PASS  avg latency 0.320s < 0.5s
+PASS  all Green targets healthy
+PASS  Production :80 still on Blue (isolation)
+SMOKE TEST PASSED - safe to shift traffic
