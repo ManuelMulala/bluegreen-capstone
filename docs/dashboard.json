@@ -1,0 +1,38 @@
+{
+  "widgets": [
+    {"type":"metric","x":0,"y":0,"width":12,"height":6,"properties":{
+      "title":"Request count: Blue vs Green","region":"eu-west-1","view":"timeSeries","stat":"Sum","period":60,
+      "metrics":[
+        ["AWS/ApplicationELB","RequestCount","TargetGroup","targetgroup/bg-tg-blue/4ea15ff3985f2122","LoadBalancer","app/bg-alb/1e9a26ec378b4177",{"label":"Blue","color":"#1f4e9c"}],
+        ["AWS/ApplicationELB","RequestCount","TargetGroup","targetgroup/bg-tg-green/36e1935507661234","LoadBalancer","app/bg-alb/1e9a26ec378b4177",{"label":"Green","color":"#1e7d3a"}]]}},
+    {"type":"metric","x":12,"y":0,"width":12,"height":6,"properties":{
+      "title":"Target 5XX errors","region":"eu-west-1","view":"timeSeries","stat":"Sum","period":60,
+      "metrics":[
+        ["AWS/ApplicationELB","HTTPCode_Target_5XX_Count","TargetGroup","targetgroup/bg-tg-blue/4ea15ff3985f2122","LoadBalancer","app/bg-alb/1e9a26ec378b4177",{"label":"Blue 5XX","color":"#1f4e9c"}],
+        ["AWS/ApplicationELB","HTTPCode_Target_5XX_Count","TargetGroup","targetgroup/bg-tg-green/36e1935507661234","LoadBalancer","app/bg-alb/1e9a26ec378b4177",{"label":"Green 5XX","color":"#d62728"}]]}},
+    {"type":"metric","x":0,"y":6,"width":12,"height":6,"properties":{
+      "title":"Target response time p90 (s)","region":"eu-west-1","view":"timeSeries","stat":"p90","period":60,
+      "metrics":[
+        ["AWS/ApplicationELB","TargetResponseTime","TargetGroup","targetgroup/bg-tg-blue/4ea15ff3985f2122","LoadBalancer","app/bg-alb/1e9a26ec378b4177",{"label":"Blue p90","color":"#1f4e9c"}],
+        ["AWS/ApplicationELB","TargetResponseTime","TargetGroup","targetgroup/bg-tg-green/36e1935507661234","LoadBalancer","app/bg-alb/1e9a26ec378b4177",{"label":"Green p90","color":"#1e7d3a"}]],
+      "annotations":{"horizontal":[{"label":"Latency alarm (1s)","value":1}]}}},
+    {"type":"metric","x":12,"y":6,"width":12,"height":6,"properties":{
+      "title":"Healthy hosts","region":"eu-west-1","view":"timeSeries","stat":"Minimum","period":60,
+      "metrics":[
+        ["AWS/ApplicationELB","HealthyHostCount","TargetGroup","targetgroup/bg-tg-blue/4ea15ff3985f2122","LoadBalancer","app/bg-alb/1e9a26ec378b4177",{"label":"Blue healthy","color":"#1f4e9c"}],
+        ["AWS/ApplicationELB","HealthyHostCount","TargetGroup","targetgroup/bg-tg-green/36e1935507661234","LoadBalancer","app/bg-alb/1e9a26ec378b4177",{"label":"Green healthy","color":"#1e7d3a"}],
+        ["AWS/ApplicationELB","UnHealthyHostCount","TargetGroup","targetgroup/bg-tg-green/36e1935507661234","LoadBalancer","app/bg-alb/1e9a26ec378b4177",{"label":"Green unhealthy","color":"#d62728"}]]}},
+    {"type":"metric","x":0,"y":12,"width":12,"height":6,"properties":{
+      "title":"EC2 CPU utilization (%)","region":"eu-west-1","view":"timeSeries","period":60,
+      "metrics":[[{"expression":"SEARCH('{AWS/EC2,InstanceId} MetricName=\"CPUUtilization\"', 'Average', 60)","id":"cpu","label":""}]]}},
+    {"type":"metric","x":12,"y":12,"width":12,"height":6,"properties":{
+      "title":"Memory used (%), CloudWatch agent","region":"eu-west-1","view":"timeSeries","period":60,
+      "metrics":[[{"expression":"SEARCH('{BlueGreen,InstanceId} MetricName=\"mem_used_percent\"', 'Average', 60)","id":"mem","label":""}]]}},
+    {"type":"alarm","x":0,"y":18,"width":24,"height":3,"properties":{
+      "title":"Deployment alarms","alarms":[
+        "arn:aws:cloudwatch:eu-west-1:586481704498:alarm:bg-green-5xx",
+        "arn:aws:cloudwatch:eu-west-1:586481704498:alarm:bg-green-unhealthy",
+        "arn:aws:cloudwatch:eu-west-1:586481704498:alarm:bg-green-latency",
+        "arn:aws:cloudwatch:eu-west-1:586481704498:alarm:bg-alb-5xx"]}}
+  ]
+}
