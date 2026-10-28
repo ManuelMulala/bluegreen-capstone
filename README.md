@@ -64,6 +64,8 @@ The data tier is **shared, not duplicated**. Blue and Green point at the same RD
 
 Exported live configuration is in [`docs/config/`](docs/config/): ALB, listeners (with weights), target groups, security groups, alarms, EventBridge rule.
 
+Final state: production listener at **Green 100 / Blue 0** with both Green targets healthy; Blue still running as standby (screenshots 18, 19). Isolation before the switch is shown in 16a/16b (production on Blue) next to 17a/17b (Green reachable only on :8080).
+
 ---
 
 ## 2. Repository layout
@@ -287,3 +289,9 @@ aws sns delete-topic --topic-arn $TOPIC
 | 13 | ![](docs/screenshots/13-sns-alarm-email.png) | Alarm email |
 | 14 | ![](docs/screenshots/14-sns-rollback-email.png) | Auto-rollback emails |
 | 15 | ![](docs/screenshots/15-lambda-rollback-log.png) | Lambda rollback log |
+| 16a | ![](docs/screenshots/16a-blue-page-eu-west-1a.png) | Production :80 on Blue v1.0, instance in eu-west-1a |
+| 16b | ![](docs/screenshots/16b-blue-page-eu-west-1c.png) | Production :80 on Blue v1.0, instance in eu-west-1c (ALB balancing across AZs) |
+| 17a | ![](docs/screenshots/17a-green-page-8080-eu-west-1a.png) | Test listener :8080 on Green v2.0, eu-west-1a |
+| 17b | ![](docs/screenshots/17b-green-page-8080-eu-west-1c.png) | Test listener :8080 on Green v2.0, eu-west-1c |
+| 18 | ![](docs/screenshots/18-listener-weights.png) | HTTP:80 listener: bg-tg-green 100 (100%), bg-tg-blue 0 (0%) |
+| 19 | ![](docs/screenshots/19-green-targets-healthy.png) | bg-tg-green: 2/2 targets healthy, 0 unhealthy |
